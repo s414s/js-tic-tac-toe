@@ -14,5 +14,11 @@ Para ello, a partir del esqueleto proporcionado, será necesario implementar el 
   - Comprobar si la nueva jugada hace que el tablero esté lleno
   - Pasar el turno al otro oponente
 
+## Ayuda
+- Utiliza la propiedad `className` para cambiar entre X y O
+- Puedes utilizar el mismo manejador para todos los cuadrados, si escribes el selector correcto
+- Puedes manejar una variable global para mantener el estado del tablero e ir anotando las jugadas
+- La variable del tablero puede ser un array multidimensional https://medium.com/fractions/multidimensional-arrays-in-javascript-be344f27df0e
+
 ## Rúbrica
 TODO
