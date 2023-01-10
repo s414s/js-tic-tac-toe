@@ -8,10 +8,27 @@
 <body>
     <script src="./index.js"></script>
     <style>
+        main {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 80%;
+            display: flex;
+        }
+
+        .main__information {
+            display: flex;
+            text-align: center;
+        }
         .row {
             display: flex;
             justify-content: space-evenly;
             margin-bottom: 20px;
+        }
+        .grow {
+            flex-grow: 1;
         }
         .cell {
             width: 150px;
@@ -34,29 +51,82 @@
             background-repeat: no-repeat;
             background-size: 100%;
         }
+        .turn-cell-o {
+            width: 150px;
+            height: 150px;
+            background-image: url('./img/circle.png');
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        .turn-cell-x {
+            width: 150px;
+            height: 150px;
+            background-image: url('./img/cross.png');
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
         h1 {
             text-align: center;
             font-size: xxx-large;
         }
     </style>
     <h1>Tic tac toe</h1>
-    <div>
-        <div class="row">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+    <main>
+        <div class="container">
+            <div class="grow">
+                <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div>
+                <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell-x"></div>
+                    <div class="cell"></div>
+                </div>
+                <div class="row">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div>
+            </div>
+            <div class="main__information">
+                <div>
+                    <div>Turno</div>
+                    <div class="turn-cell-o"></div>
+                </div>
+                <div>
+                    <div>Movements</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Orden</td>
+                                <td>Casilla</td>
+                                <td>Tipo</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>1-1</td>
+                                <td>cruz</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2-1</td>
+                                <td>raya</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <table>
+                    <thead></thead>
+                </table> -->
+            </div>
         </div>
-        <div class="row">
-            <div class="cell"></div>
-            <div class="cell-x"></div>
-            <div class="cell"></div>
-        </div>
-        <div class="row">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-        </div>
-    </div>
+    </main>
     <div style="display:flex;justify-content:center">
         <button id="restart">New game</button>
     </div>
