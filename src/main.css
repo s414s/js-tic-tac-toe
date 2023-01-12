@@ -1,0 +1,63 @@
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 80%;
+  display: flex;
+}
+
+.main__information {
+  display: flex;
+  text-align: center;
+}
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+.grow {
+  flex-grow: 1;
+}
+.cell {
+  width: 150px;
+  height: 150px;
+  background-color: blueviolet;
+}
+.cell-o {
+  width: 150px;
+  height: 150px;
+  background-image: url('./img/circle.png');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.cell-x {
+  width: 150px;
+  height: 150px;
+  background-image: url('./img/cross.png');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.turn-cell-o {
+  width: 150px;
+  height: 150px;
+  background-image: url('./img/circle.png');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.turn-cell-x {
+  width: 150px;
+  height: 150px;
+  background-image: url('./img/cross.png');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+h1 {
+  text-align: center;
+  font-size: xxx-large;
+}

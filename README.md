@@ -43,7 +43,7 @@ Si se te ocurre algún otro punto "optativo", coméntalo con el profesor.
   - Marcar con el símbolo correspondiente (alternar cruces y rayas)
 - (1 pto) Indicar en la parte de turno de qué jugador es el turno.
 - (1 pto) Implementar el reset de la partida
-- (1 pto) Implementar el algoritmo de comprobación de ganar/perder utilizando
+- (1 pto) Implementar el algoritmo de comprobación de ganar/perder
 - (1 pto) Mantener un registro de los movimientos de los usuarios en la tabla indicada
 
 
