@@ -46,11 +46,9 @@ Si se te ocurre algún otro punto "optativo", coméntalo con el profesor.
 - (1 pto) Implementar el algoritmo de comprobación de ganar/perder
 - (1 pto) Mantener un registro de los movimientos de los usuarios en la tabla indicada
 
-
-
 ### Optativos
 - (2 pto) Implementar la posibilidad de jugar contra la máquina
 - (2 ptos) Implementar la gestión de la partida en una clase Game, con los métodos apropiados (checkWin, doMove...)
 - (2 ptos) Permitir generar partidas con tableros más grandes (4x4, 5x5)
 - (1 pto) Implementar opción de deshacer el último movimiento
-
+- (1 pto) Utiliza Git, mediante un fork, y la metodología Gitflow durante todo el desarrollo de la aplicación.
