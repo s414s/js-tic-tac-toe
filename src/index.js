@@ -1,9 +1,8 @@
 'use strict';
-
 // Cruz => 1
 // Raya => -1
 // Casilla no seleccionada => 0
-class Board {
+class Game {
     board;
     isGameActive = true;
     activeUser;
@@ -18,7 +17,6 @@ class Board {
 
     constructor(numCells, idBoard, idPlayerTurn, idResetBtn, idMovements) {
         this.numCells = numCells;
-
         this.idBoard = idBoard;
         this.idPlayerTurn = idPlayerTurn;
         this.idResetBtn = idResetBtn;
@@ -48,14 +46,14 @@ class Board {
         this.board[row][column] = (this.activeUser === "cruz" ? 1 : -1);
 
         // Save movement
-        this.movements.push(`${this.movements.length + 1},${Number(row) + 1},${Number(column) + 1},${this.activeUser}`);
+        this.movements.push(`${this.movements.length + 1},${Number(column) + 1},${Number(row) + 1},${this.activeUser}`);
     }
 
     checkWinner() {
         // Check Rows and Columns
         for (let i = 0; i < this.numCells; i++) {
-            const rowWinner = this.getWinner(this.board[i]); // TODO - check
-            const colWinner = this.getWinner(this.board.map(x => x[i])); // TODO - check
+            const rowWinner = this.getWinner(this.board[i]);
+            const colWinner = this.getWinner(this.board.map(x => x[i]));
 
             if (rowWinner !== 0 || colWinner !== 0) {
                 return rowWinner === 0 ? colWinner : rowWinner;
@@ -63,14 +61,12 @@ class Board {
         }
 
         // Check Diagonals
-        // const diagonal1Winner = this.getWinner(this.board.map((x, i) => { this.board[i][i] }));
-        const diagonal1Winner = this.getWinner([this.board[0][0], this.board[1][1], this.board[2][2]]);
-        const diagonal2Winner = this.getWinner([this.board[0][2], this.board[1][1], this.board[2][0]]);
+        const diagonal1Winner = this.getWinner(this.board.map((row, i) => row[i]));
+        const diagonal2Winner = this.getWinner(this.board.toReversed().map((row, i) => row[i]));
 
         if (diagonal1Winner !== 0 || diagonal2Winner !== 0) {
             return diagonal1Winner === 0 ? diagonal2Winner : diagonal1Winner;
         }
-
         return 0;
     }
 
@@ -86,7 +82,6 @@ class Board {
         cell.id = id;
         cell.className = className;
         cell.onclick = this.listenToAction.bind(this);
-        //cell.addEventListener('click', this.listenToAction.bind(this))
 
         return cell
     }
@@ -175,6 +170,6 @@ class Board {
 }
 
 window.onload = () => {
-    const boardController = new Board(3, "gameboard", "playerturn", "restart", "movements");
+    const boardController = new Game(3, "gameboard", "playerturn", "restart", "movements");
     boardController.init();
 }
