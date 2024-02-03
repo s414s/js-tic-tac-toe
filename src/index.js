@@ -45,11 +45,14 @@ class Game {
             alert("no movement to undo");
             return;
         }
+        if (!this.isGameActive) {
+            alert("the game is finished, start a new one");
+            return;
+        }
         const [order, cellCol, cellRow, player] = this.movements.pop().split(',');
         this.activeUser = this.activeUser === "cruz" ? "raya" : "cruz";
         this.board[cellRow - 1][cellCol - 1] = 0
 
-        console.log(this.board)
         this.renderBoard();
     }
 
@@ -147,6 +150,7 @@ class Game {
             if (this.checkWinner() !== 0) {
                 alert(`player ${this.activeUser} has won!`);
                 this.isGameActive = false;
+                this.renderBoard();
                 return
             }
 
