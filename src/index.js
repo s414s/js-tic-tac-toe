@@ -12,15 +12,17 @@ class Game {
     idPlayerTurn;
     idResetBtn;
     idMovements;
+    idUndoBtn;
 
     numCells;
 
-    constructor(numCells, idBoard, idPlayerTurn, idResetBtn, idMovements) {
+    constructor(numCells, idBoard, idPlayerTurn, idResetBtn, idMovements, idUndoBtn) {
         this.numCells = numCells;
         this.idBoard = idBoard;
         this.idPlayerTurn = idPlayerTurn;
         this.idResetBtn = idResetBtn;
         this.idMovements = idMovements;
+        this.idUndoBtn = idUndoBtn;
     }
 
     init() {
@@ -33,10 +35,25 @@ class Game {
         for (let i = 0; i < this.numCells; i++) {
             this.board.push(Array(this.numCells).fill(0))
         }
-
         this.movements = [];
         this.isGameActive = true;
         this.activeUser = "cruz";
+    }
+
+    listenToUndoMovement(event) {
+        if (this.movements.length === 0) {
+            alert("no movement to undo");
+            return;
+        }
+        if (!this.isGameActive) {
+            alert("the game is finished, start a new one");
+            return;
+        }
+        const [order, cellCol, cellRow, player] = this.movements.pop().split(',');
+        this.activeUser = this.activeUser === "cruz" ? "raya" : "cruz";
+        this.board[cellRow - 1][cellCol - 1] = 0
+
+        this.renderBoard();
     }
 
     changeCell(row, column) {
@@ -92,8 +109,10 @@ class Game {
         const tableBody = document.getElementById(this.idMovements);
         const playerTurn = document.getElementById(this.idPlayerTurn);
         const restartBtn = document.getElementById(this.idResetBtn);
+        const undoBtn = document.getElementById(this.idUndoBtn);
 
         restartBtn.onclick = this.listenToResetBtn.bind(this);
+        undoBtn.onclick = this.listenToUndoMovement.bind(this);
 
         playerTurn.className = this.activeUser === "cruz" ? "turn-cell-x" : "turn-cell-o";
 
@@ -119,7 +138,6 @@ class Game {
 
     listenToAction(event) {
         const [, cellCol, cellRow] = event.target.id.split('-');
-        console.log("user action received on cell", cellCol, cellRow)
 
         if (!this.isGameActive) {
             alert("The game is over, restart a new game");
@@ -128,15 +146,16 @@ class Game {
 
         try {
             this.changeCell(cellRow, cellCol);
-            this.renderBoard();
 
             if (this.checkWinner() !== 0) {
                 alert(`player ${this.activeUser} has won!`);
                 this.isGameActive = false;
+                this.renderBoard();
                 return
             }
 
             this.activeUser = this.activeUser === "cruz" ? "raya" : "cruz";
+            this.renderBoard();
         } catch (error) {
             alert(error)
         }
@@ -174,6 +193,6 @@ class Game {
 }
 
 window.onload = () => {
-    const boardController = new Game(3, "gameboard", "playerturn", "restart", "movements");
+    const boardController = new Game(3, "gameboard", "playerturn", "restart", "movements", "undo");
     boardController.init();
 }
