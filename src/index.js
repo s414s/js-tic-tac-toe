@@ -93,8 +93,7 @@ class Game {
         const playerTurn = document.getElementById(this.idPlayerTurn);
         const restartBtn = document.getElementById(this.idResetBtn);
 
-        //restartBtn.onclick = this.resetBoard.bind(this);
-        restartBtn.onclick = this.resetBoard;
+        restartBtn.onclick = this.listenToResetBtn.bind(this);
 
         playerTurn.className = this.activeUser === "cruz" ? "turn-cell-x" : "turn-cell-o";
 
@@ -115,7 +114,6 @@ class Game {
             gameBoard.appendChild(row);
         }
 
-        // TODO insertar las nuevas rows en el cuerpo de la tabla
         this.movements.map(x => tableBody.appendChild(this.generateTableRow(x)))
     }
 
@@ -142,6 +140,11 @@ class Game {
         } catch (error) {
             alert(error)
         }
+    }
+
+    listenToResetBtn(event) {
+        this.resetBoard();
+        this.renderBoard();
     }
 
     generateCellClassname(value) {
