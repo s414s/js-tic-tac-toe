@@ -130,7 +130,6 @@ class Game {
 
         try {
             this.changeCell(cellRow, cellCol);
-            this.activeUser = this.activeUser === "cruz" ? "raya" : "cruz";
             this.renderBoard();
 
             if (this.checkWinner() !== 0) {
@@ -138,6 +137,8 @@ class Game {
                 this.isGameActive = false;
                 return
             }
+
+            this.activeUser = this.activeUser === "cruz" ? "raya" : "cruz";
         } catch (error) {
             alert(error)
         }
